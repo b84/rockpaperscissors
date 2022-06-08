@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock, paper, scissors</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // Goal - create a function that will randomly choose rock, paper or scissors.
+    // this will be the computer's selection.
+    // Create an array, rpsArray containing rock, paper, scissors
+    // Use Random() to randomly generate a number from 0-2 and pull from the rpsArray
+ 
+    function computerPlay(){
+        const rpsArray = ['rock','paper','scissors'];
+        return rpsArray[Math.floor(Math.random() * 3)];
+    }
+
+    // Goal - create a function that will determine if the player or computer won the game
+    // of RPS.
+    // playerSelection to lowercase 
+    // If playerSelection === computerSelection - DRAW
+    // If playerSelection is Rock and computerSelection is Paper or
+    // playerSelection is Paper and computer is Scissors or
+    // playerSelection is scissors and computer is Rock 
+    // Computer wins
+    // Else Player wins
+
+    function playRound(human){
+        let lowerCaseHuman = human.toLowerCase();
+        let comp = computerPlay();
+        return lowerCaseHuman === comp ? 'DRAW'
+            : lowerCaseHuman === 'rock' && comp === 'paper' ? 'Computer Wins'
+            : lowerCaseHuman === 'paper' && comp === 'scissors' ? 'Computer Wins'
+            : lowerCaseHuman === 'scissors' && comp === 'rock' ? 'Computer Wins'
+            : 'You win';
+    }
+
+    
+    
+
+function game(){
+    let computerScore = 0;
+    let playerScore = 0;
+    let drawRounds = 0;
+    for (let i = 0; i < 5; i++){
+
+        let playerSelection = prompt('What do you choose?');  
+        const rounds = playRound(playerSelection);
+
+        if (rounds === 'Computer Wins') {
+            console.log('You lose');
+            computerScore++;
+        } else if (rounds === 'You win') {
+            console.log('You won');
+            playerScore++;
+        } else {
+            console.log('Draw');
+            drawRounds++;
+        }
+
+    }
+    console.log('-------------------------');
+    console.log('THE FINAL RESULTS ARE....');
+    console.log('Your score is: ' + playerScore);
+    console.log('Computer\'s score is: ' + computerScore);
+    console.log('Number of draws: ' + drawRounds);
+
+    if (computerScore > playerScore) {
+        return 'You lose, better luck next time!';
+    } else if (playerScore > computerScore) {
+        return 'Congrats, you won the game!';
+    } else {
+        return 'Tie game! Try again!';
+    }
+}
+
+    
+</script>
+</html>
